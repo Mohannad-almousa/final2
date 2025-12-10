@@ -1,0 +1,495 @@
+/* ===========================
+   GLOBAL
+=========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f4f4f4;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #222;
+}
+
+/* ===========================
+   NAVBAR
+=========================== */
+.topbar {
+  background: #111;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.topbar .logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  padding-bottom: 3px;
+}
+
+.nav a.active,
+.nav a:hover {
+  border-bottom: 2px solid #4d8bff;
+}
+
+.logout {
+  margin-left: 20px;
+  background: #d9534f;
+  border: none;
+  padding: 6px 15px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.user-chip {
+  margin-left: 15px;
+  padding: 4px 10px;
+  background: #4d8bff;
+  border-radius: 5px;
+}
+
+/* ===========================
+   HOME PAGE & MODULES
+=========================== */
+.container {
+  padding: 40px 60px;
+}
+
+.card.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  margin-bottom: 40px;
+}
+
+.hero-text h1 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.hero-text h1 span {
+  display: block;
+  font-size: 22px;
+  color: #4d8bff;
+}
+
+.hero-text p {
+  margin: 15px 0;
+  font-size: 15px;
+  max-width: 400px;
+  line-height: 1.5;
+}
+
+.hero-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  padding: 10px 20px;
+  background: #4d8bff;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid #4d8bff;
+  color: #4d8bff;
+}
+
+.section {
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.section-subtitle {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.module-card,
+.hiw-card,
+.level-card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid #ddd;
+}
+
+.hiw-card-icon {
+  width: 35px;
+  height: 35px;
+  background: #4d8bff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.level-label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.level-list {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.level-list li {
+  margin-bottom: 5px;
+}
+
+/* ===========================
+   CTA
+=========================== */
+.cta-band {
+  background: #4d8bff;
+  color: white;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.cta-band .btn {
+  background: white;
+  color: #4d8bff;
+  margin-top: 15px;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+.footer {
+  margin-top: 50px;
+  padding: 40px;
+  background: #111;
+  color: white;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.footer-col-title {
+  font-size: 17px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.footer ul li {
+  list-style: none;
+  margin-bottom: 6px;
+  opacity: 0.8;
+}
+
+.footer-bottom {
+  margin-top: 30px;
+  text-align: center;
+  opacity: 0.7;
+}
+
+/* =========================================================
+   LOGIN / REGISTER — FINAL DESIGN (Compatible with your HTML)
+=========================================================== */
+
+/* PAGE BACKGROUND */
+.auth-body {
+  background: #fbf9f4;
+}
+
+/* MAIN LAYOUT */
+.auth-shell {
+  display: flex;
+  height: 100vh;
+  padding: 40px;
+  gap: 40px;
+}
+
+/* LEFT SIDE */
+.auth-left {
+  width: 45%;
+  background: #dcdcdc;
+  border-radius: 20px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.auth-logo-mini {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* RIGHT SIDE */
+.auth-right {
+  width: 45%;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 50px 60px;
+}
+
+/* TITLE */
+.auth-title-wrap h1 {
+  font-size: 28px;
+}
+
+.login_title {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-top: 5px;
+}
+
+/* TABS */
+.auth-tabs {
+  display: flex;
+  gap: 10px;
+  background: #ece9ff;
+  padding: 4px;
+  border-radius: 20px;
+  width: 55%;
+  justify-content: space-between;
+}
+
+.auth-tab,
+.auth-tab-active {
+  padding: 6px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.auth-tab {
+  color: #757575;
+  text-decoration: none;
+}
+
+.auth-tab-active {
+  background: #bfc6ff;
+  color: #000;
+}
+
+/* INPUTS */
+.input_box {
+  background: #0d1a33;
+  padding: 12px 15px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.input_box i {
+  color: white;
+  font-size: 16px;
+}
+
+.input_box input {
+  width: 100%;
+  margin-left: 10px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 15px;
+}
+
+/* LINKS */
+.remember_forget_box {
+  margin-top: 10px;
+}
+
+.remember_forget_box a {
+  font-size: 13px;
+  color: #4d8bff;
+}
+
+/* BUTTON */
+.login_btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #4d8bff;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* REGISTER TEXT */
+.register {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.register a {
+  color: #4d8bff;
+}
+
+/* MESSAGE BOXES */
+.message_box {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  display: none;
+}
+
+.message_box.error {
+  background: #ffd6d6;
+  color: #900000;
+}
+
+.message_box.created {
+  background: #d8ffd6;
+  color: #006600;
+}
+
+/* ==========================================
+   REGISTER PAGE — FINAL STYLING
+   Matches the layout of the second image
+========================================== */
+
+/* Title alignment like the design */
+.auth-title-wrap h1 {
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+/* Tabs container like picture */
+.auth-tabs {
+  background: #ece9ff;
+  padding: 4px;
+  border-radius: 20px;
+  width: 55%;
+  justify-content: space-between;
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+/* Active tab */
+.auth-tab-active {
+  background: #bfc6ff;
+  padding: 6px 20px;
+  border-radius: 20px;
+  color: #000 !important;
+}
+
+/* Register fields dark style */
+.auth-right .input_box {
+  background: #0d1a33;
+  padding: 13px 15px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.auth-right .input_box input {
+  background: transparent;
+  color: white;
+  margin-left: 10px;
+  border: none;
+  outline: none;
+}
+
+/* Icons inside field */
+.auth-right .input_box i {
+  color: white;
+  font-size: 18px;
+}
+
+/* MAIN button style (Create Account) */
+.auth-right .login_btn {
+  width: 60%;
+  border-radius: 12px;
+  margin: 25px auto 10px auto;
+  display: block;
+  background: #dcdcdc;
+  color: #111;
+  font-weight: bold;
+}
+
+/* Divider styling for Register */
+.auth-right .divider {
+  display: flex;
+  align-items: center;
+  margin: 25px 0;
+  color: #999;
+  font-size: 14px;
+}
+
+.auth-right .divider span {
+  flex: 1;
+  height: 1px;
+  background: #ddd;
+}
+
+/* Google login button centered */
+.google-btn {
+  width: 170px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.google-btn img {
+  width: 100%;
+}
+
+/* Bottom text "Already have an account?" */
+.bottom-text,
+.register {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+/* Remove blue text highlight inside inputs */
+input::selection {
+  background: transparent;
+  color: inherit;
+}

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login • Research Quest</title>
+  <link rel="stylesheet" href="pageStyle.css">
+  <script src="https://kit.fontawesome.com/a2e0d6b3d0.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="auth-body">
+
+  <div class="auth-shell">
+    
+    <!-- LEFT SIDE -->
+    <aside class="auth-left">
+      <div class="auth-left-top">
+        <div class="auth-logo-mini">Research Quest</div>
+      </div>
+
+      <div class="auth-left-center">
+        <h2>Master Research Skills</h2>
+        <p>
+          Interactive modules, gamified progress, and a personalized dashboard
+          to help you become confident with scientific research.
+        </p>
+      </div>
+
+      <div class="auth-left-bottom">
+        text............................... <br>
+        .................................................<br>
+        .................................................<br>
+      </div>
+    </aside>
+
+    <!-- RIGHT SIDE -->
+    <main class="auth-right">
+
+      <div class="auth-header-top">
+        <div class="auth-title-wrap">
+          <h1>Welcome Back</h1>
+          <p class="login_title">Log in to continue your research journey.</p>
+        </div>
+
+        <div class="auth-tabs">
+          <a href="register.html" class="auth-tab">Sign Up</a>
+          <span class="auth-tab-active">Log In</span>
+        </div>
+      </div>
+
+      <form class="login_form">
+        <div class="input_box">
+          <i class="fa-solid fa-envelope"></i>
+          <input type="text" id="email" placeholder="Your e-mail">
+        </div>
+
+        <div class="input_box">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" id="password" placeholder="Password">
+        </div>
+
+        <div class="remember_forget_box">
+          <a href="ForgotPassword.html" id="forgotLink">Forgot Password?</a>
+        </div>
+
+        <button type="button" class="login_btn">Log In</button>
+
+        <p class="register">
+          Don't have an account?
+          <a href="register.html">Create one</a>
+        </p>
+
+        <div class="message_box"></div>
+      </form>
+
+    </main>
+  </div>
+
+  <!-- Firebase Login Script -->
+  <script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+    import {
+      getFirestore,
+      doc,
+      updateDoc,
+      setDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBS6WZ13DKVvbdddE-azZrI2FuBrSe39u0",
+      authDomain: "login-1aba2.firebaseapp.com",
+      projectId: "login-1aba2",
+      storageBucket: "login-1aba2.appspot.com",
+      messagingSenderId: "393759404087",
+      appId: "1:393759404087:web:9581fde1afb9ca81decfb2"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const btn = document.querySelector(".login_btn");
+    const message = document.querySelector(".message_box");
+
+    btn.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      message.style.display = "none";
+      message.classList.remove("error", "created");
+
+      if (!email || !password) {
+        message.textContent = "Please fill all fields!";
+        message.classList.add("error");
+        message.style.display = "block";
+        return;
+      }
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then(async () => {
+          const user = auth.currentUser;
+          const userRef = doc(db, "users", user.uid);
+
+          try {
+            // تحديث إذا الوثيقة موجودة
+            await updateDoc(userRef, {
+              lastLogin: serverTimestamp()
+            });
+          } catch (err) {
+            // إنشاء الوثيقة إذا لم تكن موجودة
+            await setDoc(userRef, {
+              email: user.email,
+              createdAt: serverTimestamp(),
+              lastLogin: serverTimestamp()
+            });
+          }
+
+          message.textContent = "Login successful!";
+          message.classList.add("created");
+          message.style.display = "block";
+
+          setTimeout(() => {
+            window.location.href = "home.html";
+          }, 800);
+        })
+        .catch((error) => {
+          message.classList.add("error");
+
+          switch (error.code) {
+            case "auth/wrong-password":
+              message.textContent = "Wrong password!";
+              break;
+            case "auth/user-not-found":
+              message.textContent = "User not found!";
+              break;
+            case "auth/invalid-email":
+              message.textContent = "Invalid email format!";
+              break;
+            case "auth/missing-password":
+              message.textContent = "Please enter a password!";
+              break;
+            case "auth/too-many-requests":
+              message.textContent = "Too many attempts. Try again later!";
+              break;
+            default:
+              message.textContent = error.message;
+              break;
+          }
+
+          message.style.display = "block";
+        });
+    });
+
+  </script>
+
+</body>
+</html>
